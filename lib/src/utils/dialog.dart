@@ -25,17 +25,13 @@ Future<List<DateTime?>?> showCalendarDatePicker2Dialog({
     child: Material(
       color: dialogBackgroundColor ?? Theme.of(context).canvasColor,
       borderRadius: borderRadius ?? BorderRadius.circular(10),
+      clipBehavior: Clip.hardEdge,
       child: SizedBox(
         width: dialogSize.width,
-        height: max(dialogSize.height, 410),
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: [
-            CalendarDatePicker2WithActionButtons(
-              initialValue: initialValue,
-              config: config.copyWith(openedFromDialog: true),
-            ),
-          ],
+        height: max(dialogSize.height, 490),
+        child: CalendarDatePicker2WithActionButtons(
+          initialValue: initialValue,
+          config: config.copyWith(openedFromDialog: true),
         ),
       ),
     ),

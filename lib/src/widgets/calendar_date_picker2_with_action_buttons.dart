@@ -5,6 +5,7 @@ class CalendarDatePicker2WithActionButtons extends StatefulWidget {
   const CalendarDatePicker2WithActionButtons({
     required this.initialValue,
     required this.config,
+    this.accent,
     this.onValueChanged,
     this.onDisplayedMonthChanged,
     this.onCancelTapped,
@@ -28,6 +29,8 @@ class CalendarDatePicker2WithActionButtons extends StatefulWidget {
 
   /// The callback when ok button is tapped
   final Function? onOkTapped;
+
+  final Color? accent;
 
   @override
   State<CalendarDatePicker2WithActionButtons> createState() =>
@@ -75,9 +78,33 @@ class _CalendarDatePicker2WithActionButtonsState
 
   @override
   Widget build(BuildContext context) {
+    final size = MediaQuery.of(context).size;
     return Column(
       mainAxisSize: MainAxisSize.min,
       children: [
+        Expanded(
+          child: Container(
+            color: widget.accent ?? Colors.yellow,
+            width: size.width,
+            child: Padding(
+              padding: const EdgeInsets.symmetric(vertical: 15, horizontal: 25),
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: const [
+                  Text(
+                    'Selección de fechas',
+                    style: TextStyle(fontWeight: FontWeight.w400, fontSize: 10),
+                  ),
+                  Spacer(),
+                  Text(
+                    'Nov 02 - Nov 8',
+                    style: TextStyle(fontWeight: FontWeight.w400, fontSize: 24),
+                  ),
+                ],
+              ),
+            ),
+          ),
+        ),
         MediaQuery.removePadding(
           context: context,
           child: CalendarDatePicker2(
@@ -117,7 +144,7 @@ class _CalendarDatePicker2WithActionButtonsState
             const EdgeInsets.symmetric(vertical: 10, horizontal: 15),
         child: widget.config.cancelButton ??
             Text(
-              'CANCEL',
+              'Cancelar',
               style: widget.config.cancelButtonTextStyle ??
                   TextStyle(
                     color: widget.config.selectedDayHighlightColor ??
