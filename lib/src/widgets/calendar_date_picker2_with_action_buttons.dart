@@ -84,7 +84,7 @@ class _CalendarDatePicker2WithActionButtonsState
       children: [
         Expanded(
           child: Container(
-            color: widget.accent ?? Theme.of(context).colorScheme.primary,
+            color: Theme.of(context).colorScheme.primary,
             width: size.width,
             child: Padding(
               padding: const EdgeInsets.symmetric(vertical: 15, horizontal: 25),
