@@ -5,7 +5,6 @@ class CalendarDatePicker2WithActionButtons extends StatefulWidget {
   const CalendarDatePicker2WithActionButtons({
     required this.initialValue,
     required this.config,
-    this.accent,
     this.onValueChanged,
     this.onDisplayedMonthChanged,
     this.onCancelTapped,
@@ -30,8 +29,6 @@ class CalendarDatePicker2WithActionButtons extends StatefulWidget {
   /// The callback when ok button is tapped
   final Function? onOkTapped;
 
-  final Color? accent;
-
   @override
   State<CalendarDatePicker2WithActionButtons> createState() =>
       _CalendarDatePicker2WithActionButtonsState();
@@ -41,6 +38,21 @@ class _CalendarDatePicker2WithActionButtonsState
     extends State<CalendarDatePicker2WithActionButtons> {
   List<DateTime?> _values = [];
   List<DateTime?> _editCache = [];
+
+  static const _months = [
+    'Enero',
+    'Febrero',
+    'Marzo',
+    'Abril',
+    'Mayo',
+    'Junio',
+    'Julio',
+    'Agosto',
+    'Septiembre',
+    'Octubre',
+    'Noviembre',
+    'Diciembre',
+  ];
 
   @override
   void initState() {
@@ -79,6 +91,17 @@ class _CalendarDatePicker2WithActionButtonsState
   @override
   Widget build(BuildContext context) {
     final size = MediaQuery.of(context).size;
+
+    String headerMessage = 'Selecciona las fechas';
+    if (_editCache.isNotEmpty) {
+      headerMessage = '';
+      headerMessage =
+          '${_months[_editCache[0]!.month - 1].substring(0, 3)} ${_editCache[0]!.day} - ';
+      if (_editCache.length == 2) {
+        headerMessage +=
+            '${_months[_editCache[1]!.month - 1].substring(0, 3)} ${_editCache[1]!.day}';
+      }
+    }
     return Column(
       mainAxisSize: MainAxisSize.min,
       children: [
@@ -90,15 +113,20 @@ class _CalendarDatePicker2WithActionButtonsState
               padding: const EdgeInsets.symmetric(vertical: 15, horizontal: 25),
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
-                children: const [
-                  Text(
+                children: [
+                  const Text(
                     'Selección de fechas',
                     style: TextStyle(fontWeight: FontWeight.w400, fontSize: 10),
                   ),
-                  Spacer(),
-                  Text(
-                    'Nov 02 - Nov 8',
-                    style: TextStyle(fontWeight: FontWeight.w400, fontSize: 24),
+                  const Spacer(),
+                  Flexible(
+                    child: Text(
+                      headerMessage,
+                      style: const TextStyle(
+                        fontWeight: FontWeight.w400,
+                        fontSize: 24,
+                      ),
+                    ),
                   ),
                 ],
               ),
@@ -110,7 +138,10 @@ class _CalendarDatePicker2WithActionButtonsState
           child: CalendarDatePicker2(
             initialValue: [..._editCache],
             config: widget.config,
-            onValueChanged: (values) => _editCache = values,
+            onValueChanged: (values) {
+              _editCache = values;
+              setState(() {});
+            },
             onDisplayedMonthChanged: widget.onDisplayedMonthChanged,
           ),
         ),
@@ -149,7 +180,7 @@ class _CalendarDatePicker2WithActionButtonsState
                   TextStyle(
                     color: widget.config.selectedDayHighlightColor ??
                         colorScheme.primary,
-                    fontWeight: FontWeight.w700,
+                    fontWeight: FontWeight.w500,
                     fontSize: 14,
                   ),
             ),
@@ -179,7 +210,7 @@ class _CalendarDatePicker2WithActionButtonsState
                   TextStyle(
                     color: widget.config.selectedDayHighlightColor ??
                         colorScheme.primary,
-                    fontWeight: FontWeight.w700,
+                    fontWeight: FontWeight.w500,
                     fontSize: 14,
                   ),
             ),

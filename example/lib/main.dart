@@ -130,7 +130,6 @@ class _MyHomePageState extends State<MyHomePage> {
     final config = CalendarDatePicker2WithActionButtonsConfig(
         dayTextStyle: dayTextStyle,
         calendarType: CalendarDatePicker2Type.range,
-        selectedDayHighlightColor: Colors.yellow,
         closeDialogOnCancelTapped: true,
         firstDayOfWeek: 1,
         weekdayLabelTextStyle: const TextStyle(
