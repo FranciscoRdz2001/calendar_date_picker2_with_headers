@@ -119,13 +119,15 @@ class _CalendarDatePicker2WithActionButtonsState
                     'Selección de fechas',
                     style: TextStyle(fontWeight: FontWeight.w400, fontSize: 10),
                   ),
-                  const Spacer(),
-                  Flexible(
-                    child: Text(
-                      headerMessage,
-                      style: const TextStyle(
-                        fontWeight: FontWeight.w400,
-                        fontSize: 24,
+                  Expanded(
+                    child: Align(
+                      alignment: Alignment.bottomLeft,
+                      child: Text(
+                        headerMessage,
+                        style: const TextStyle(
+                          fontWeight: FontWeight.w400,
+                          fontSize: 24,
+                        ),
                       ),
                     ),
                   ),
