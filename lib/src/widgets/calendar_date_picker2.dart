@@ -769,8 +769,7 @@ class _MonthPickerState extends State<_MonthPicker> {
 
   @override
   Widget build(BuildContext context) {
-    final Color controlColor =
-        Theme.of(context).colorScheme.onSurface.withOpacity(0.60);
+    final Color controlColor = Theme.of(context).colorScheme.inversePrimary;
 
     return Semantics(
       child: Column(
@@ -958,7 +957,10 @@ class _DayPickerState extends State<_DayPicker> {
         child: Center(
           child: Text(
             weekday,
-            style: widget.config.weekdayLabelTextStyle ?? headerStyle,
+            style: TextStyle(
+              fontWeight: FontWeight.w400,
+              color: Theme.of(context).colorScheme.onInverseSurface,
+            ),
           ),
         ),
       ));
@@ -977,9 +979,11 @@ class _DayPickerState extends State<_DayPicker> {
       color: colorScheme.onSurface.withOpacity(0.60),
     );
     final TextStyle dayStyle = textTheme.bodySmall!;
-    final Color enabledDayColor = colorScheme.onSurface.withOpacity(0.87);
-    final Color disabledDayColor = colorScheme.onSurface.withOpacity(0.38);
-    final Color selectedDayColor = colorScheme.onPrimary;
+    final Color enabledDayColor =
+        colorScheme.onInverseSurface.withOpacity(0.87);
+    final Color disabledDayColor =
+        colorScheme.onInverseSurface.withOpacity(0.38);
+    final Color selectedDayColor = colorScheme.onInverseSurface;
     final Color selectedDayBackground = colorScheme.primary;
     final Color todayColor = colorScheme.primary;
 
