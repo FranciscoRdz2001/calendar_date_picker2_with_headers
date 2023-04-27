@@ -239,7 +239,6 @@ class _MyHomePageState extends State<MyHomePage> {
       firstDayOfWeek: 1,
       controlsHeight: 50,
       controlsTextStyle: const TextStyle(
-        color: Colors.black,
         fontSize: 15,
         fontWeight: FontWeight.bold,
       ),
@@ -330,7 +329,6 @@ class _MyHomePageState extends State<MyHomePage> {
         fontWeight: FontWeight.bold,
       ),
       controlsTextStyle: const TextStyle(
-        color: Colors.black,
         fontSize: 15,
         fontWeight: FontWeight.bold,
       ),
